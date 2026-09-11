@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+    CSP: スクリプトは自サイトと zipcloud（郵便番号→住所のJSONP）のみ許可。
+    送信先は GAS Webアプリ（script.google.com → script.googleusercontent.com へリダイレクト）のみ。
+    送信先ドメインを変える場合は connect-src も書き換えること。
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://zipcloud.ibsnet.co.jp; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data:; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="format-detection" content="telephone=no">
+  <title>脱退一時金 所得税還付 お申込みフォーム</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="brand" data-i18n="office_name">EAST TAX会計事務所</p>
+      <nav class="lang-bar" id="lang-nav" aria-label="言語 / Language" data-i18n-aria="lang_nav_label">
+        <ul>
+          <li><button type="button" data-lang="ja" lang="ja" aria-pressed="true">日本語</button></li>
+          <li><button type="button" data-lang="en" lang="en" aria-pressed="false">English</button></li>
+          <li><button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">简体中文</button></li>
+          <li><button type="button" data-lang="ko" lang="ko" aria-pressed="false">한국어</button></li>
+          <li><button type="button" data-lang="vi" lang="vi" aria-pressed="false">Tiếng Việt</button></li>
+          <li><button type="button" data-lang="id" lang="id" aria-pressed="false">Bahasa Indonesia</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <p class="demo-banner" id="demo-banner" role="status" hidden data-i18n="demo_banner"></p>
+
+  <noscript>
+    <p>このフォームを使うには JavaScript を有効にしてください。 / Please enable JavaScript to use this form. / 请启用 JavaScript。 / JavaScript를 활성화해 주세요. / Vui lòng bật JavaScript. / Harap aktifkan JavaScript.</p>
+  </noscript>
+
+  <main class="wrap" id="main">
+    <div id="form-view">
+      <div class="intro">
+        <h1 data-i18n="h1">脱退一時金 所得税還付 お申込みフォーム</h1>
+        <p data-i18n="lead"></p>
+        <p class="muted" data-i18n="lead_docs"></p>
+        <p class="muted" data-i18n="lead_lang"></p>
+        <p class="secure-note" data-i18n="secure_note"></p>
+      </div>
+
+      <p class="required-note" data-i18n="required_note"></p>
+
+      <form id="apply-form" novalidate>
+
+        <!-- ================= 1. 本人情報 ================= -->
+        <section class="card" aria-labelledby="sec-personal-title">
+          <h2 id="sec-personal-title"><span class="step" aria-hidden="true">1</span><span data-i18n="sec_personal"></span></h2>
+
+          <div class="field">
+            <label for="f-name"><span data-i18n="f_name"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-name" data-i18n="h_name"></p>
+            <p class="field-error" id="err-name" hidden></p>
+            <input type="text" id="f-name" name="name" required maxlength="100" autocomplete="name" autocapitalize="characters" spellcheck="false" aria-describedby="hint-name">
+          </div>
+
+          <div class="field">
+            <label for="f-name_kana"><span data-i18n="f_name_kana"></span><span class="badge opt" data-i18n="badge_optional"></span></label>
+            <p class="hint" id="hint-name_kana" data-i18n="h_name_kana"></p>
+            <p class="field-error" id="err-name_kana" hidden></p>
+            <input type="text" id="f-name_kana" name="name_kana" maxlength="100" autocomplete="off" spellcheck="false" lang="ja" aria-describedby="hint-name_kana">
+            <p class="field-warn" id="warn-name_kana" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-birth_date"><span data-i18n="f_birth_date"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="field-error" id="err-birth_date" hidden></p>
+            <input type="date" id="f-birth_date" name="birth_date" required min="1900-01-01" placeholder="YYYY-MM-DD" autocomplete="bday">
+          </div>
+
+          <div class="field">
+            <label for="f-nationality"><span data-i18n="f_nationality"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-nationality" data-i18n="h_nationality"></p>
+            <p class="field-error" id="err-nationality" hidden></p>
+            <input type="text" id="f-nationality" name="nationality" required maxlength="60" autocomplete="off" aria-describedby="hint-nationality">
+          </div>
+
+          <div class="field">
+            <label for="f-departure_date"><span data-i18n="f_departure_date"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="field-error" id="err-departure_date" hidden></p>
+            <input type="date" id="f-departure_date" name="departure_date" required min="1950-01-01" placeholder="YYYY-MM-DD" autocomplete="off">
+          </div>
+
+          <fieldset class="field" id="fs-has_notice">
+            <legend><span data-i18n="f_has_notice"></span><span class="badge req" data-i18n="badge_required"></span></legend>
+            <p class="hint" id="hint-has_notice" data-i18n="h_has_notice"></p>
+            <p class="field-error" id="err-has_notice" hidden></p>
+            <div class="choices inline">
+              <label class="choice"><input type="radio" id="f-has_notice" name="has_notice" value="yes" required aria-describedby="hint-has_notice"><span class="label-text" data-i18n="opt_notice_yes"></span></label>
+              <label class="choice"><input type="radio" id="f-has_notice-no" name="has_notice" value="no" aria-describedby="hint-has_notice"><span class="label-text" data-i18n="opt_notice_no"></span></label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- ================= 2. 連絡先・住所 ================= -->
+        <section class="card" aria-labelledby="sec-contact-title">
+          <h2 id="sec-contact-title"><span class="step" aria-hidden="true">2</span><span data-i18n="sec_contact"></span></h2>
+
+          <div class="field">
+            <label for="f-email"><span data-i18n="f_email"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-email" data-i18n="h_email"></p>
+            <p class="field-error" id="err-email" hidden></p>
+            <input type="email" id="f-email" name="email" required maxlength="254" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" aria-describedby="hint-email">
+          </div>
+
+          <div class="field">
+            <label for="f-email_confirm"><span data-i18n="f_email_confirm"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-email_confirm" data-i18n="h_email_confirm"></p>
+            <p class="field-error" id="err-email_confirm" hidden></p>
+            <!-- 確認用。name を付けず、送信データには含めない -->
+            <input type="email" id="f-email_confirm" required maxlength="254" autocomplete="off" inputmode="email" autocapitalize="off" spellcheck="false" aria-describedby="hint-email_confirm">
+          </div>
+
+          <div class="field">
+            <label for="f-phone"><span data-i18n="f_phone"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-phone" data-i18n="h_phone"></p>
+            <p class="field-error" id="err-phone" hidden></p>
+            <input type="tel" id="f-phone" name="phone" required maxlength="30" autocomplete="tel" aria-describedby="hint-phone">
+          </div>
+
+          <div class="field">
+            <label for="f-country"><span data-i18n="f_country"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-country" data-i18n="h_country"></p>
+            <p class="field-error" id="err-country" hidden></p>
+            <input type="text" id="f-country" name="country" required maxlength="60" autocomplete="country-name" aria-describedby="hint-country">
+          </div>
+
+          <div class="field">
+            <label for="f-address_current"><span data-i18n="f_address_current"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-address_current" data-i18n="h_address_current"></p>
+            <p class="field-error" id="err-address_current" hidden></p>
+            <textarea id="f-address_current" name="address_current" required rows="3" maxlength="300" autocomplete="street-address" aria-describedby="hint-address_current"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="f-jp_postal"><span data-i18n="f_jp_postal"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-jp_postal">
+              <span data-i18n="h_jp_postal"></span><br>
+              <a id="zip-search-link" href="https://www.post.japanpost.jp/service/search/zipcode/" target="_blank" rel="noopener noreferrer"><span data-i18n="h_jp_postal_link"></span><span class="visually-hidden" data-i18n="new_tab"></span></a>
+            </p>
+            <p class="field-error" id="err-jp_postal" hidden></p>
+            <input type="text" id="f-jp_postal" name="jp_postal" class="short" required maxlength="10" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="hint-jp_postal">
+            <p class="zip-status" id="zip-status" aria-live="polite" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-address_jp"><span data-i18n="f_address_jp"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-address_jp" data-i18n="h_address_jp"></p>
+            <p class="field-error" id="err-address_jp" hidden></p>
+            <input type="text" id="f-address_jp" name="address_jp" required maxlength="200" autocomplete="off" aria-describedby="hint-address_jp">
+          </div>
+        </section>
+
+        <!-- ================= 3. 還付金の受取口座 ================= -->
+        <section class="card" aria-labelledby="sec-bank-title">
+          <h2 id="sec-bank-title"><span class="step" aria-hidden="true">3</span><span data-i18n="sec_bank"></span></h2>
+          <p class="section-intro" data-i18n="sec_bank_intro"></p>
+
+          <div class="field">
+            <label for="f-bank_name"><span data-i18n="f_bank_name"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-bank_name" data-i18n="h_bank_name"></p>
+            <p class="field-error" id="err-bank_name" hidden></p>
+            <input type="text" id="f-bank_name" name="bank_name" required maxlength="100" autocomplete="off" aria-describedby="hint-bank_name">
+          </div>
+
+          <div class="field">
+            <label for="f-bank_branch"><span data-i18n="f_bank_branch"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="field-error" id="err-bank_branch" hidden></p>
+            <input type="text" id="f-bank_branch" name="bank_branch" required maxlength="100" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="f-swift"><span data-i18n="f_swift"></span><span class="badge opt" data-i18n="badge_optional"></span></label>
+            <p class="hint" id="hint-swift" data-i18n="h_swift"></p>
+            <p class="field-error" id="err-swift" hidden></p>
+            <input type="text" id="f-swift" name="swift" class="short upper" maxlength="14" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="hint-swift">
+          </div>
+
+          <div class="field">
+            <label for="f-account_number"><span data-i18n="f_account_number"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="field-error" id="err-account_number" hidden></p>
+            <input type="text" id="f-account_number" name="account_number" required maxlength="40" autocomplete="off" spellcheck="false">
+          </div>
+
+          <div class="field">
+            <label for="f-account_holder"><span data-i18n="f_account_holder"></span><span class="badge req" data-i18n="badge_required"></span></label>
+            <p class="hint" id="hint-account_holder" data-i18n="h_account_holder"></p>
+            <p class="field-error" id="err-account_holder" hidden></p>
+            <input type="text" id="f-account_holder" name="account_holder" required maxlength="100" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="hint-account_holder">
+          </div>
+        </section>
+
+        <!-- ================= 4. 同意事項 ================= -->
+        <section class="card" aria-labelledby="sec-agree-title">
+          <h2 id="sec-agree-title"><span class="step" aria-hidden="true">4</span><span data-i18n="sec_agree"></span></h2>
+
+          <div class="field">
+            <p class="field-error" id="err-agree_east_tax" hidden></p>
+            <label class="choice" for="f-agree_east_tax">
+              <input type="checkbox" id="f-agree_east_tax" name="agree_east_tax" required>
+              <span class="label-text"><span data-i18n="f_agree_east_tax"></span><span class="badge req" data-i18n="badge_required"></span></span>
+            </label>
+          </div>
+
+          <p class="hint" data-i18n="terms_intro"></p>
+          <details class="terms" id="terms">
+            <summary data-i18n="terms_toggle"></summary>
+            <div class="terms-tools" id="terms-tools" role="group">
+              <button type="button" data-terms-view="translation" aria-pressed="true" data-i18n="terms_view_translation"></button>
+              <button type="button" data-terms-view="original" aria-pressed="false" data-i18n="terms_view_original"></button>
+            </div>
+            <div class="terms-body" id="terms-body" role="region" tabindex="0" data-i18n-aria="terms_region_label"></div>
+          </details>
+
+          <div class="field">
+            <p class="field-error" id="err-agree_terms" hidden></p>
+            <label class="choice" for="f-agree_terms">
+              <input type="checkbox" id="f-agree_terms" name="agree_terms" required>
+              <span class="label-text"><span data-i18n="f_agree_terms"></span><span class="badge req" data-i18n="badge_required"></span></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- ボット対策の隠し項目（人間には見えない。空のまま送信される） -->
+        <div class="hp" aria-hidden="true" hidden>
+          <label for="f-website">Website</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" value="">
+        </div>
+
+        <div class="submit-area">
+          <div class="alert" id="form-alert" role="alert" tabindex="-1"></div>
+          <button type="submit" class="btn-primary" id="submit-btn" data-i18n="btn_submit"></button>
+          <p class="sending-note" id="sending-note" hidden data-i18n="sending_note"></p>
+        </div>
+      </form>
+    </div>
+
+    <!-- ================= 送信完了画面 ================= -->
+    <section class="done card" id="done" hidden tabindex="-1" aria-labelledby="done-title">
+      <p class="demo-note" id="done-demo" hidden data-i18n="done_demo"></p>
+      <h2 id="done-title" data-i18n="done_title"></h2>
+
+      <div class="receipt">
+        <p class="receipt-label" data-i18n="done_id_label"></p>
+        <p class="receipt-id" id="done-id"></p>
+        <p class="receipt-note" data-i18n="done_id_note"></p>
+      </div>
+
+      <p data-i18n="done_mail"></p>
+      <p data-i18n-rich="done_mail_trouble"></p>
+
+      <h3 data-i18n="done_post_title"></h3>
+      <p class="notice-no" id="done-notice-no" hidden data-i18n="done_notice_no"></p>
+      <p data-i18n="done_post_intro"></p>
+      <ul class="docs">
+        <li data-i18n-rich="done_doc1"></li>
+        <li data-i18n-rich="done_doc2"></li>
+      </ul>
+      <p data-i18n-rich="done_memo"></p>
+
+      <h3 data-i18n="done_address_title"></h3>
+      <div class="address-box">
+        <div>
+          <p class="addr-label" data-i18n="done_address_ja_label"></p>
+          <address lang="ja">〒104-0033<br>東京都中央区新川2-3-4<br>新川田所ビル3階<br>EAST TAX会計事務所</address>
+        </div>
+        <div>
+          <p class="addr-label" data-i18n="done_address_en_label"></p>
+          <address lang="en">EAST TAX Accounting Office<br>Shinkawa Tadokoro Bldg. 3F,<br>2-3-4 Shinkawa, Chuo-ku,<br>Tokyo 104-0033, JAPAN</address>
+        </div>
+      </div>
+
+      <p class="done-contact" data-i18n-rich="done_contact"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p data-i18n="office_name">EAST TAX会計事務所</p>
+      <p data-i18n-rich="footer_contact"></p>
+    </div>
+  </footer>
+
+  <script src="config.js" defer></script>
+  <script src="i18n.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
