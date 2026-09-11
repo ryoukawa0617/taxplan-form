@@ -119,12 +119,27 @@
             <input type="email" id="f-email_confirm" required maxlength="254" autocomplete="off" inputmode="email" autocapitalize="off" spellcheck="false" aria-describedby="hint-email_confirm">
           </div>
 
-          <div class="field">
-            <label for="f-phone"><span data-i18n="f_phone"></span><span class="badge req" data-i18n="badge_required"></span></label>
+          <!-- 電話番号: 国番号の選択（必須）＋番号。送信時に「+国番号 番号」にまとめる -->
+          <fieldset class="field" id="fs-phone">
+            <legend><span data-i18n="f_phone"></span><span class="badge req" data-i18n="badge_required"></span></legend>
             <p class="hint" id="hint-phone" data-i18n="h_phone"></p>
-            <p class="field-error" id="err-phone" hidden></p>
-            <input type="tel" id="f-phone" name="phone" required maxlength="30" autocomplete="tel" aria-describedby="hint-phone">
-          </div>
+            <div class="phone-row">
+              <div class="phone-cc">
+                <label class="sub-label" for="f-phone_country" data-i18n="f_phone_country"></label>
+                <p class="field-error" id="err-phone_country" hidden></p>
+                <!-- 選択肢は app.js が countries.js から作り、画面の言語で国名を表示する -->
+                <select id="f-phone_country" name="phone_country" required autocomplete="off" aria-describedby="hint-phone">
+                  <option value="" data-i18n="opt_phone_country"></option>
+                </select>
+              </div>
+              <div class="phone-num">
+                <label class="sub-label" for="f-phone" data-i18n="f_phone_number"></label>
+                <p class="field-error" id="err-phone" hidden></p>
+                <input type="tel" id="f-phone" name="phone" required maxlength="30" autocomplete="tel-national" inputmode="tel" aria-describedby="hint-phone">
+              </div>
+            </div>
+            <p class="phone-preview" id="phone-preview" hidden></p>
+          </fieldset>
 
           <div class="field">
             <label for="f-country"><span data-i18n="f_country"></span><span class="badge req" data-i18n="badge_required"></span></label>
@@ -291,6 +306,7 @@
 
   <script src="config.js" defer></script>
   <script src="i18n.js" defer></script>
+  <script src="countries.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

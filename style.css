@@ -245,6 +245,34 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] {
   border: 2px solid var(--c-error);
   background: var(--c-error-soft);
 }
+select {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--c-input-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--c-text);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+select:focus { border-color: var(--c-focus); }
+select:focus-visible { outline: 3px solid var(--c-focus); outline-offset: 1px; }
+select[aria-invalid="true"] { border: 2px solid var(--c-error); background: var(--c-error-soft); }
+
+/* 電話番号（国番号＋番号）。スマホでは縦に並べ、広い画面では横に並べる */
+.sub-label { display: block; margin: 0 0 4px; font-size: 0.875rem; font-weight: 700; }
+.phone-row { display: grid; gap: 12px; }
+.phone-row > div { min-width: 0; }
+.phone-preview {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  color: var(--c-muted);
+  font-variant-numeric: tabular-nums;
+}
+
 input.upper { text-transform: uppercase; }
 input.upper::placeholder { text-transform: none; }
 

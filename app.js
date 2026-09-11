@@ -20,6 +20,16 @@
   var SUBMIT_TIMEOUT_MS = 60000;
   var DEMO = !CFG.GAS_ENDPOINT;
   var CONTACT_EMAIL = CFG.CONTACT_EMAIL || 'refund-info@east-tax.com';
+  var REF_STORAGE_KEY = 'dattai_form_ref';
+  var REF_MAX_LENGTH = 40;
+
+  // 電話の国番号（countries.js）。[ISO2, 国番号, 英語名]
+  var PHONE_TOP = window.PHONE_TOP_COUNTRIES || [];
+  var PHONE_ALL = window.PHONE_COUNTRIES || [];
+  var PHONE_CODE = {};
+  var PHONE_EN = {};
+  PHONE_ALL.forEach(function (r) { PHONE_CODE[r[0]] = r[1]; PHONE_EN[r[0]] = r[2]; });
+  var NO_TRUNK_ZERO_STRIP = { IT: true }; // 国番号の後も先頭の0を残す国
 
   // 入力項目（画面の並び順）。type: text(既定) / date / radio / check
   var FIELDS = [
@@ -31,6 +41,7 @@
     { key: 'has_notice', required: true, type: 'radio' },
     { key: 'email', required: true, nfkc: true, check: checkEmail },
     { key: 'email_confirm', required: true, nfkc: true, check: checkEmailConfirm },
+    { key: 'phone_country', required: true, type: 'select' },
     { key: 'phone', required: true, nfkc: true, check: checkPhone },
     { key: 'country', required: true },
     { key: 'address_current', required: true },
@@ -56,7 +67,9 @@
     alert: null,       // { type: 'summary'|'validation'|'network'|'server'|'spam' }
     termsView: 'translation',
     sending: false,
-    done: null         // { id, hasNotice }
+    done: null,        // { id, hasNotice }
+    ref: '',           // 紹介元（URL の ?ref=）。画面には出さない
+    submissionId: ''   // 二重送信の判定用。通信エラー後の再送では同じ値を使う
   };
 
   var form, submitBtn;
@@ -158,6 +171,7 @@
   function syncUrl(lang) {
     try {
       var u = new URL(window.location.href);
+      // lang だけを書き換える。ref などほかのパラメータはそのまま残る
       if (u.searchParams.has('lang')) {
         u.searchParams.set('lang', lang);
         window.history.replaceState(null, '', u.toString());
@@ -184,6 +198,8 @@
     });
 
     // 入力値には触れず、表示中のメッセージだけを新しい言語で描き直す
+    renderPhoneCountries();
+    renderPhonePreview();
     FIELDS.forEach(function (f) { renderFieldMessages(f.key); });
     renderKanaWarn();
     renderZip();
@@ -251,6 +267,7 @@
     }
     var el = $('f-' + key);
     var v = el ? el.value : '';
+    if (f.type === 'select') return v;
     if (f.type === 'date') return normalizeDate(v);
     if (key === 'swift') return normalizeSwift(v);
     if (f.nfkc) v = nfkc(v);
@@ -309,10 +326,33 @@
     return v.toLowerCase() === valueOf('email').toLowerCase() ? null : 'e_email_mismatch';
   }
 
+  // 番号欄の値 → 数字だけ。先頭に選択中の「+国番号」が重ねて書かれていれば取り除く。
+  // 「+」で始まるのに選択中の国番号と合わないときは null
+  function phoneNationalDigits(v) {
+    v = nfkc(v).trim();
+    var digits = v.replace(/\D/g, '');
+    if (v.charAt(0) !== '+') return digits;
+    var code = PHONE_CODE[valueOf('phone_country')] || '';
+    if (!code || digits.indexOf(code) !== 0) return null;
+    return digits.slice(code.length);
+  }
+
   function checkPhone(v) {
-    if (!/^[+0-9\s\-().]+$/.test(v)) return 'e_phone';
-    var digits = v.replace(/\D/g, '').length;
-    return digits >= 6 && digits <= 20 ? null : 'e_phone';
+    if (!/^\+?[0-9\s\-().]+$/.test(v)) return 'e_phone';
+    var digits = phoneNationalDigits(v);
+    if (digits === null) return 'e_phone_plus';
+    return digits.length >= 4 && digits.length <= 15 ? null : 'e_phone';
+  }
+
+  // 送信する形式「+国番号 番号」（例 +84 912345678）。
+  // 先頭の0（国内の市外局番の0）は1つだけ取り除く。イタリアは取り除かない
+  function formatPhone() {
+    var iso = valueOf('phone_country');
+    var code = PHONE_CODE[iso];
+    var digits = phoneNationalDigits(valueOf('phone'));
+    if (!code || !digits) return '';
+    if (!NO_TRUNK_ZERO_STRIP[iso] && digits.charAt(0) === '0') digits = digits.slice(1);
+    return '+' + code + ' ' + digits;
   }
 
   function checkPostal(v) {
@@ -328,6 +368,7 @@
     var v = valueOf(key);
     if (f.type === 'check') return v || !f.required ? null : 'e_required_check';
     if (f.type === 'radio') return v || !f.required ? null : 'e_required_choice';
+    if (f.type === 'select') return v || !f.required ? null : 'e_required_choice';
     if (f.type === 'date') {
       var el = $('f-' + key);
       if (el && el.validity && el.validity.badInput) return 'e_date_format';
@@ -572,6 +613,109 @@
   /* ------------------------------------------------------------------ */
   /* 送信                                                                  */
   /* ------------------------------------------------------------------ */
+  /* ---------- 電話の国番号の選択肢 ---------- */
+  // 国名は Intl.DisplayNames で画面の言語に訳す。使えないブラウザでは英語名
+  function regionNamer(lang) {
+    try {
+      if (typeof Intl !== 'undefined' && typeof Intl.DisplayNames === 'function') {
+        var dn = new Intl.DisplayNames([HTML_LANG[lang], 'en'], { type: 'region' });
+        return function (iso) {
+          var n = null;
+          try { n = dn.of(iso); } catch (e) { n = null; }
+          return n && n !== iso ? n : (PHONE_EN[iso] || iso);
+        };
+      }
+    } catch (e) { /* 下の英語名を使う */ }
+    return function (iso) { return PHONE_EN[iso] || iso; };
+  }
+
+  function makeOption(value, text) {
+    var o = document.createElement('option');
+    o.value = value;
+    o.textContent = text;
+    return o;
+  }
+
+  // 先頭によく使う国、区切り線のあとに全世界の国（訳した国名の順）。選択は保持する
+  function renderPhoneCountries() {
+    var sel = $('f-phone_country');
+    if (!sel) return;
+    var current = sel.value;
+    var nameOf = regionNamer(state.lang);
+    var collator = null;
+    try { collator = new Intl.Collator(HTML_LANG[state.lang]); } catch (e) { collator = null; }
+    var label = function (iso, name) { return name + ' (+' + PHONE_CODE[iso] + ')'; };
+
+    var frag = document.createDocumentFragment();
+    frag.appendChild(makeOption('', t('opt_phone_country')));
+    PHONE_TOP.forEach(function (iso) {
+      if (PHONE_CODE[iso]) frag.appendChild(makeOption(iso, label(iso, nameOf(iso))));
+    });
+    var sep = makeOption('', '──────────');
+    sep.disabled = true;
+    frag.appendChild(sep);
+    PHONE_ALL
+      .map(function (r) { return { iso: r[0], name: nameOf(r[0]) }; })
+      .sort(function (a, b) {
+        if (collator) return collator.compare(a.name, b.name);
+        return a.name < b.name ? -1 : (a.name > b.name ? 1 : 0);
+      })
+      .forEach(function (c) { frag.appendChild(makeOption(c.iso, label(c.iso, c.name))); });
+
+    sel.textContent = '';
+    sel.appendChild(frag);
+    sel.value = current;
+  }
+
+  // 送信される形式を番号欄の下に表示する（先頭の0が自動で消えることの確認用）
+  function renderPhonePreview() {
+    var el = $('phone-preview');
+    if (!el) return;
+    var ok = !validateField('phone_country') && !validateField('phone');
+    var p = ok ? formatPhone() : '';
+    el.textContent = p ? t('phone_preview', { phone: p }) : '';
+    el.hidden = !p;
+  }
+
+  /* ---------- 紹介元（?ref=） ---------- */
+  // 半角英数字・「-」「_」以外は捨て、40文字までにする
+  function sanitizeRef(v) {
+    return String(v == null ? '' : v).replace(/[^A-Za-z0-9_-]/g, '').slice(0, REF_MAX_LENGTH);
+  }
+
+  // URL に ref があれば sessionStorage に保存（上書き）。なければ保存済みの値を使う
+  function initRef() {
+    var fromUrl = '';
+    try { fromUrl = sanitizeRef(new URLSearchParams(window.location.search).get('ref')); } catch (e) { fromUrl = ''; }
+    if (fromUrl) {
+      state.ref = fromUrl;
+      try { window.sessionStorage.setItem(REF_STORAGE_KEY, fromUrl); } catch (e) { /* 保存できなくても送信には使う */ }
+      return;
+    }
+    var saved = '';
+    try { saved = sanitizeRef(window.sessionStorage.getItem(REF_STORAGE_KEY)); } catch (e) { saved = ''; }
+    state.ref = saved;
+  }
+
+  /* ---------- 送信ID ---------- */
+  // 英数字と「-」だけのランダムなID（UUID形式）
+  function newSubmissionId() {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    } catch (e) { /* 下の方法で作る */ }
+    var bytes = [];
+    try {
+      if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+        var a = new Uint8Array(16);
+        window.crypto.getRandomValues(a);
+        for (var i = 0; i < a.length; i++) bytes.push(a[i]);
+      }
+    } catch (e) { bytes = []; }
+    while (bytes.length < 16) bytes.push(Math.floor(Math.random() * 256));
+    var hex = bytes.map(function (b) { return (b < 16 ? '0' : '') + b.toString(16); }).join('');
+    return hex.slice(0, 8) + '-' + hex.slice(8, 12) + '-' + hex.slice(12, 16) + '-' + hex.slice(16, 20) + '-' + hex.slice(20, 32);
+  }
+
   function buildPayload() {
     return {
       name: valueOf('name'),
@@ -582,7 +726,8 @@
       address_current: valueOf('address_current'),
       jp_postal: postalDigits(valueOf('jp_postal')),
       address_jp: valueOf('address_jp'),
-      phone: valueOf('phone'),
+      phone: formatPhone(),
+      phone_country: valueOf('phone_country'),
       email: valueOf('email'),
       departure_date: valueOf('departure_date'),
       has_notice: valueOf('has_notice'),
@@ -594,6 +739,8 @@
       agree_east_tax: valueOf('agree_east_tax') === true,
       agree_terms: valueOf('agree_terms') === true,
       website: ($('f-website') && $('f-website').value) || '',
+      ref: state.ref || '',
+      submission_id: state.submissionId,
       lang: state.lang,
       submitted_at_client: new Date().toISOString()
     };
@@ -717,6 +864,8 @@
     setSending(false);
     submitBtn.disabled = true;
     form.reset(); // 共有端末に個人情報を残さない
+    state.submissionId = newSubmissionId(); // 次の申込は別の送信IDにする
+    renderPhonePreview();
     lastAutoFilled = '';
     zipLastQueried = '';
     state.zip = null;
@@ -774,6 +923,7 @@
       if (!key) return;
       if (key === 'name_kana') updateKanaWarn();
       if (key === 'jp_postal') onPostalInput();
+      if (key === 'phone' || key === 'phone_country') renderPhonePreview();
       if (state.errors[key]) setError(key, validateField(key));
       if (key === 'email' && state.touched.email_confirm && valueOf('email_confirm')) {
         setError('email_confirm', validateField('email_confirm'));
@@ -789,9 +939,13 @@
       var key = keyOfTarget(ev.target);
       if (!key) return;
       var f = FIELD_MAP[key];
-      if (f.type === 'radio' || f.type === 'check' || f.type === 'date') {
+      if (f.type === 'radio' || f.type === 'check' || f.type === 'date' || f.type === 'select') {
         state.touched[key] = true;
         setError(key, validateField(key));
+        if (key === 'phone_country' && (valueOf('phone') || state.errors.phone)) {
+          setError('phone', validateField('phone'));
+        }
+        if (key === 'phone_country') renderPhonePreview();
         if (key === 'birth_date' && state.touched.departure_date && valueOf('departure_date')) {
           setError('departure_date', validateField('departure_date'));
         }
@@ -815,6 +969,8 @@
 
     form.addEventListener('submit', onSubmit);
 
+    initRef();
+    state.submissionId = newSubmissionId();
     applyLang(detectLang(), { initial: true });
   }
 
