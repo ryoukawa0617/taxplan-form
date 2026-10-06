@@ -19,7 +19,7 @@
   var ZIP_TIMEOUT_MS = 8000;
   var SUBMIT_TIMEOUT_MS = 60000;
   var DEMO = !CFG.GAS_ENDPOINT;
-  var CONTACT_EMAIL = CFG.CONTACT_EMAIL || 'refund-info@east-tax.com';
+  var CONTACT_EMAIL = CFG.CONTACT_EMAIL || 'info@east-tax.com';
   var REF_STORAGE_KEY = 'dattai_form_ref';
   var REF_MAX_LENGTH = 40;
 
