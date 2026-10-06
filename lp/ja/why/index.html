@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>なぜ脱退一時金の所得税が還付されるのか｜根拠となる法令と計算のしくみ - EAST TAX会計事務所</title>
+<meta name="description" content="脱退一時金から20.42%が源泉徴収される理由と、退職所得の選択課税（所得税法第171条・第173条）によって還付される仕組みを、根拠条文とともに税理士が解説します。">
+<!-- ★公開準備中。検索結果に出さないための指定。
+     内容が確定して本番公開するときに、この meta 行を削除すること。 -->
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%93%98</text></svg>">
+
+<script>
+var LP = {
+  FORM_URL:  'https://form.east-tax.com/',
+  REF:       'gads_ja',
+  LANG:      'ja',
+  LP_URL:    '../',
+  CONTACT:   'info@east-tax.com',
+  OFFICE_NAME: 'EAST TAX会計事務所',
+  OFFICE_REP:  '許 仁成（税理士）',
+  OFFICE_ADDR: '〒104-0033 東京都中央区新川2-3-4 新川田所ビル3階',
+  OFFICE_REG:  '東京税理士会 京橋支部 登録番号120089',   // ★要確認
+  REG_NO:      '120089',                                 // ★要確認
+  LAW_ASOF:    '2026年10月'                              // 法令の基準日。見直したら更新する
+};
+</script>
+
+<style>
+:root{
+  --c-bg:#f3f5f8; --c-surface:#ffffff; --c-text:#1b2430; --c-muted:#4a5565;
+  --c-border:#d3d9e2; --c-primary:#1d4e89; --c-primary-dark:#153a67; --c-primary-soft:#e9f0f9;
+  --c-accent:#c2410c; --c-accent-soft:#fff7ed;
+  --c-success:#146c43; --c-success-soft:#eaf6ef;
+  --c-warn:#7a4b00; --c-warn-soft:#fff7e0;
+  --radius:12px;
+  --font-latin:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans";
+  --font-ja:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",YuGothic,Meiryo,"Noto Sans CJK JP","Noto Sans JP";
+  --font-mincho:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"MS PMincho","Noto Serif CJK JP",serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-family:var(--font-ja),var(--font-latin),sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--c-bg);color:var(--c-text);line-height:1.9;overflow-wrap:anywhere;line-break:strict}
+:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+h1,h2,h3{line-height:1.5;margin:0}
+p{margin:0}
+a{color:var(--c-primary)}
+.wrap{width:100%;max-width:760px;margin:0 auto;padding:0 16px}
+
+.site{background:var(--c-surface);border-bottom:1px solid var(--c-border)}
+.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px}
+.brand{font-weight:700;font-size:15px;color:var(--c-primary);line-height:1.35}
+.brand small{display:block;font-weight:500;font-size:11.5px;color:var(--c-muted)}
+.back{font-size:13px;text-decoration:none;color:var(--c-muted);white-space:nowrap}
+.back:hover{color:var(--c-primary)}
+
+.head{background:var(--c-surface);border-bottom:1px solid var(--c-border);padding:30px 0 28px}
+.kicker{display:inline-block;font-size:12.5px;font-weight:700;color:var(--c-primary);
+  background:var(--c-primary-soft);border-radius:999px;padding:5px 13px;margin-bottom:14px}
+h1{font-size:25px;font-weight:800;letter-spacing:-.01em}
+.head .lede{margin-top:14px;font-size:15.5px;color:var(--c-muted)}
+.byline{margin-top:18px;padding-top:16px;border-top:1px solid var(--c-border);font-size:13px;color:var(--c-muted)}
+.byline b{color:var(--c-text)}
+
+main{padding:30px 0 10px}
+
+.toc{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);padding:18px 20px;margin-bottom:34px}
+.toc h2{font-size:14px;font-weight:700;color:var(--c-muted);margin-bottom:10px}
+.toc ol{margin:0;padding-left:1.35em;font-size:14.5px}
+.toc li{margin-bottom:5px}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+.sec{margin-bottom:38px;scroll-margin-top:16px}
+.sec h2{font-size:20px;font-weight:800;padding-bottom:10px;border-bottom:2px solid var(--c-primary);margin-bottom:16px}
+.sec h2 .no{color:var(--c-primary);margin-right:10px}
+.sec h3{font-size:16.5px;font-weight:700;margin:22px 0 8px}
+.sec p{font-size:15.5px;margin-bottom:14px}
+.sec ul{font-size:15.5px;margin:0 0 14px;padding-left:1.3em}
+.sec ul li{margin-bottom:6px}
+
+/* 条文の引用 */
+.law{background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-primary);
+  border-radius:0 10px 10px 0;padding:15px 18px;margin:0 0 16px}
+.law .cite{font-size:12.5px;font-weight:700;color:var(--c-primary);margin-bottom:6px;letter-spacing:.01em}
+.law .text{font-family:var(--font-mincho);font-size:14.5px;color:#2a3442;line-height:1.95}
+.law .note{font-size:13px;color:var(--c-muted);margin-top:9px;padding-top:9px;border-top:1px dashed var(--c-border)}
+
+.box{border-radius:10px;padding:15px 18px;margin:0 0 16px;font-size:14.5px}
+.box.key{background:var(--c-accent-soft);border:1px solid #f0c9a8}
+.box.warn{background:var(--c-warn-soft);border:1px solid #e8d49a;color:var(--c-warn)}
+.box.ok{background:var(--c-success-soft);border:1px solid #bfe3cd;color:#0f5132}
+.box > b:first-child{display:block;margin-bottom:4px}
+
+/* 計算例 */
+.calcbox{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px}
+.calcbox .ttl{background:#f6f8fa;border-bottom:1px solid var(--c-border);padding:11px 16px;font-size:14px;font-weight:700}
+.calcbox .r{display:flex;justify-content:space-between;gap:12px;padding:9px 16px;font-size:14.5px;border-bottom:1px solid #eef1f5}
+.calcbox .r:last-child{border-bottom:0}
+.calcbox .r span:last-child{font-family:var(--font-latin),var(--font-ja),sans-serif;font-weight:600;white-space:nowrap}
+.calcbox .r.total{background:var(--c-success-soft);font-weight:800;color:var(--c-success)}
+.calcbox .r.sub{color:var(--c-muted);font-size:13.5px}
+
+table.laws{width:100%;border-collapse:collapse;font-size:14px;background:var(--c-surface);
+  border:1px solid var(--c-border);border-radius:10px;overflow:hidden}
+table.laws th,table.laws td{text-align:left;padding:10px 13px;border-bottom:1px solid #eef1f5;vertical-align:top}
+table.laws th{background:#f6f8fa;font-weight:700;font-size:13px;color:var(--c-muted)}
+table.laws tr:last-child td{border-bottom:0}
+table.laws td:last-child{white-space:nowrap;font-size:13.5px;color:var(--c-primary);font-weight:600}
+@media(max-width:559px){
+  table.laws td:last-child{white-space:normal}
+  table.laws th:last-child,table.laws td:last-child{width:38%}
+}
+
+.trust{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);padding:20px}
+.trust dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:14.5px}
+.trust dt{color:var(--c-muted);white-space:nowrap}
+.trust dd{margin:0}
+
+.cta{background:var(--c-primary);border-radius:var(--radius);padding:26px 22px;text-align:center;margin:34px 0 10px}
+.cta h2{color:#fff;font-size:19px;font-weight:800;border:0;padding:0;margin-bottom:8px}
+.cta p{color:#cfe0f3;font-size:14px;margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;max-width:380px;
+  background:#fff;color:var(--c-primary);border-radius:10px;padding:15px 24px;
+  font:inherit;font-size:16.5px;font-weight:700;text-decoration:none;line-height:1.5}
+.btn:hover{background:#eef3f9;color:var(--c-primary-dark)}
+.cta .alt{display:block;margin-top:12px;font-size:13.5px;color:#cfe0f3}
+.cta .alt a{color:#fff}
+
+.disclaimer{font-size:12.5px;color:var(--c-muted);line-height:1.85;background:var(--c-surface);
+  border:1px solid var(--c-border);border-radius:10px;padding:16px 18px;margin-top:26px}
+
+footer{background:#111a26;color:#c6ced9;padding:30px 0 34px;font-size:13px;margin-top:40px}
+footer dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px}
+footer dt{color:#8e9bab;white-space:nowrap}
+footer dd{margin:0}
+footer a{color:#9ec3f0}
+footer .c{margin-top:18px;padding-top:14px;border-top:1px solid #26313f;font-size:12px;color:#8e9bab}
+
+@media(min-width:720px){
+  h1{font-size:30px}
+  .sec h2{font-size:22px}
+  main{padding:40px 0 10px}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">EAST TAX会計事務所<small>税理士事務所・東京</small></div>
+    <a class="back" href="../" id="back-lp">← 還付の見込み額を調べる</a>
+  </div>
+</header>
+
+<div class="head">
+  <div class="wrap">
+    <span class="kicker">詳しい解説</span>
+    <h1>なぜ脱退一時金の所得税が還付されるのか<br>— 根拠となる法令と、計算のしくみ</h1>
+    <p class="lede">脱退一時金から20.42%が差し引かれる理由と、「退職所得の選択課税」によってそれが戻ってくる仕組みを、根拠となる条文とともに説明します。ご自身で判断されたい方、社内で検討される方のための資料です。</p>
+    <p class="byline">執筆：<b id="by-rep">—</b>　<span id="by-reg">—</span>　／　法令は<b id="by-asof">—</b>時点</p>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <nav class="toc" aria-label="目次">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#s1">脱退一時金は、税法上「退職手当等」として扱われる</a></li>
+      <li><a href="#s2">非居住者には、控除なしで20.42%が源泉徴収される</a></li>
+      <li><a href="#s3">「退職所得の選択課税」で、居住者と同じ計算に戻せる</a></li>
+      <li><a href="#s4">退職所得控除によって、税額がゼロになる理由</a></li>
+      <li><a href="#s5">勤続5年以下の場合の注意（短期退職手当等）</a></li>
+      <li><a href="#s6">還付を受けるための手続きと、納税管理人</a></li>
+      <li><a href="#s7">2つの期限を混同しないこと（2年と5年）</a></li>
+      <li><a href="#s8">計算例</a></li>
+      <li><a href="#s9">根拠条文の一覧</a></li>
+      <li><a href="#s10">当事務所について</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1 -->
+  <section class="sec" id="s1">
+    <h2><span class="no">1</span>脱退一時金は、税法上「退職手当等」として扱われる</h2>
+    <p>脱退一時金は、厚生年金保険法および国民年金法にもとづいて支給される一時金です。所得税法は、これらの法律にもとづく一時金を「退職手当等」とみなすと定めています。</p>
+    <div class="law">
+      <div class="cite">所得税法 第31条（退職手当等とみなす一時金）</div>
+      <div class="text">次に掲げる一時金は、この法律の規定の適用については、前条第一項に規定する退職手当等とみなす。<br>一　国民年金法、厚生年金保険法…の規定に基づく一時金…で政令で定めるもの</div>
+      <div class="note">この「政令で定めるもの」の具体的な範囲は、所得税法施行令第72条に定められています。</div>
+    </div>
+    <p>つまり脱退一時金は、給与でも年金でもなく、<b>退職金と同じ区分で課税される</b>ということです。この点が、あとで説明する大きな控除につながります。</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="sec" id="s2">
+    <h2><span class="no">2</span>非居住者には、控除なしで20.42%が源泉徴収される</h2>
+    <p>脱退一時金を請求できるのは、日本に住所を有しなくなった方です。つまり支給を受ける時点で、税法上は<b>非居住者</b>にあたります。</p>
+    <p>非居住者が受け取る退職手当等のうち、日本で勤務していた期間に対応する部分は「国内源泉所得」とされ、日本で課税されます。</p>
+    <div class="law">
+      <div class="cite">所得税法 第161条第1項第12号ハ（国内源泉所得）</div>
+      <div class="text">第三十条第一項（退職所得）に規定する退職手当等のうちその支払を受ける者が居住者であつた期間に行つた勤務その他の人的役務の提供に基因するもの</div>
+    </div>
+    <p>この所得には、他の所得と合算せずに一律の税率を適用する「分離課税」が適用されます。税率は20%です（所得税法第169条・第170条）。さらに復興特別所得税が所得税額の2.1%上乗せされるため、合計で<b>20.42%</b>になります。</p>
+    <div class="law">
+      <div class="cite">復興特別所得税（復興財源確保法 第28条）</div>
+      <div class="text">源泉徴収義務者は、…源泉徴収所得税の額に百分の二・一の税率を乗じて計算した金額の復興特別所得税を併せて徴収し…</div>
+      <div class="note">20% ＋（20% × 2.1%）＝ 20.42%</div>
+    </div>
+    <div class="box key">
+      <b>ここが重要です</b>
+      この20.42%は、<b>退職所得控除も、累進税率も、一切適用されないまま</b>差し引かれています。日本の居住者が退職金を受け取るときに当然に適用される控除が、まったく反映されていない状態です。
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="sec" id="s3">
+    <h2><span class="no">3</span>「退職所得の選択課税」で、居住者と同じ計算に戻せる</h2>
+    <p>所得税法は、この状態を是正するための制度を用意しています。非居住者であっても、その退職手当等を<b>「居住者として受け取ったものとみなして」</b>税額を計算し直すことを選択できる、というものです。これを<b>退職所得の選択課税</b>といいます。</p>
+    <div class="law">
+      <div class="cite">所得税法 第171条（退職所得についての選択課税）</div>
+      <div class="text">…非居住者が…退職手当等の支払を受ける場合には、その者は、前条の規定にかかわらず、当該退職手当等について、…その年中に支払を受ける退職手当等の総額を居住者として受けたものとみなして、これに第三十条（退職所得）及び第八十九条（税率）の規定を適用するものとした場合の税額に相当する金額により所得税を課されることを選択することができる。</div>
+      <div class="note">条文中の「第三十条」が退職所得控除と2分の1課税、「第八十九条」が超過累進税率です。</div>
+    </div>
+    <p>この選択をすると、源泉徴収された20.42%と、計算し直した税額との差額が還付されます。多くの場合、計算し直した税額は<b>ゼロ</b>になります。その理由が次の退職所得控除です。</p>
+  </section>
+
+  <!-- 4 -->
+  <section class="sec" id="s4">
+    <h2><span class="no">4</span>退職所得控除によって、税額がゼロになる理由</h2>
+    <p>退職所得の金額は、収入金額からまず「退職所得控除額」を差し引き、その残額の2分の1として計算されます。</p>
+    <div class="law">
+      <div class="cite">所得税法 第30条（退職所得）</div>
+      <div class="text">退職所得の金額は、その年中の退職手当等の収入金額から退職所得控除額を控除した残額の二分の一に相当する金額とする。</div>
+    </div>
+    <h3>退職所得控除額</h3>
+    <ul>
+      <li>勤続年数が<b>20年以下</b>　…　40万円 × 勤続年数（<b>最低80万円</b>）</li>
+      <li>勤続年数が<b>20年超</b>　…　800万円 ＋ 70万円 ×（勤続年数 − 20年）</li>
+    </ul>
+    <p>勤続年数は、1年未満の端数を切り上げて計算します（所得税法施行令第69条）。脱退一時金の場合は、通知書に記載された被保険者期間がその基礎になります。</p>
+    <div class="box ok">
+      <b>控除額が、脱退一時金の額を上回ることが多い</b>
+      脱退一時金の支給額は、原則として被保険者期間60か月（5年）が上限とされています（厚生年金保険法 附則第29条）。一方、5年勤務した場合の退職所得控除額は 40万円 × 5年 ＝ <b>200万円</b>です。脱退一時金が200万円を下回れば、課税対象となる退職所得は<b>ゼロ</b>になり、源泉徴収された20.42%は<b>全額が還付</b>されます。
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="sec" id="s5">
+    <h2><span class="no">5</span>勤続5年以下の場合の注意（短期退職手当等）</h2>
+    <p>令和4年分以後、勤続年数5年以下の退職手当等は「短期退職手当等」として扱われ、収入金額から退職所得控除額を差し引いた残額のうち<b>300万円を超える部分には、2分の1課税が適用されません</b>（所得税法第30条第4項）。</p>
+    <p>脱退一時金を受け取る方の多くは勤続5年以下にあたるため、この規定の対象になります。ただし前述のとおり、そもそも控除額が支給額を上回って課税対象がゼロになるケースが多いため、実際に影響が出るのは、<b>同じ年に勤務先からも退職金を受け取っている場合</b>などに限られます。</p>
+    <div class="box warn">
+      <b>同じ年に勤務先から退職金を受け取った方</b>
+      その年に受け取った退職手当等は<b>合計して</b>計算します。また、退職所得控除額の基礎となる勤続年数も、厚生年金の加入月数とは異なる期間で計算されることがあります。この場合は還付額が変わりますので、お申し込み時にお知らせください。
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="sec" id="s6">
+    <h2><span class="no">6</span>還付を受けるための手続きと、納税管理人</h2>
+    <p>選択課税による還付は、<b>自動では行われません</b>。税務署に申告書を提出する必要があります。</p>
+    <div class="law">
+      <div class="cite">所得税法 第173条（退職所得の選択課税による還付）</div>
+      <div class="text">第百七十一条…の規定の適用を受ける非居住者は、…源泉徴収をされた又はされるべき所得税の額が…ある場合には、その年の翌年一月一日（同日前に当該退職手当等の総額が確定した場合には、その確定した日）以後、税務署長に対し、…申告書を提出することができる。</div>
+      <div class="note">「総額が確定した日以後」とあるため、支給決定通知書によって金額が確定していれば、<b>年が明けるのを待たずに</b>申告できます。</div>
+    </div>
+    <h3>日本国内に納税管理人を置く必要があります</h3>
+    <p>すでに出国している方は、日本国内で納税に関する手続きを行う人（納税管理人）を定め、税務署に届け出る必要があります。</p>
+    <div class="law">
+      <div class="cite">国税通則法 第117条（納税管理人）</div>
+      <div class="text">個人である納税者がこの法律の施行地に住所及び居所を有せず、若しくは有しないこととなる場合…において、納税申告書の提出その他国税に関する事項を処理する必要があるときは、その者は、…納税管理人を定めなければならない。</div>
+    </div>
+    <p>当事務所にご依頼いただいた場合は、<b>税理士が納税管理人となり</b>、申告書の作成・提出から還付金の受領までを行います。海外にお住まいのまま、日本の銀行口座がなくても手続きが完了するのはこのためです。</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="sec" id="s7">
+    <h2><span class="no">7</span>2つの期限を混同しないこと（2年と5年）</h2>
+    <p>よく混同されますが、<b>期限は2つあり、それぞれ別物です</b>。</p>
+    <table class="laws">
+      <tr><th>手続き</th><th>期限</th><th>根拠</th></tr>
+      <tr>
+        <td><b>脱退一時金そのものの請求</b><br>日本年金機構に請求する</td>
+        <td><b>日本に住所を有しなくなった日から2年以内</b></td>
+        <td>厚生年金保険法 附則第29条<br>国民年金法 附則第9条の3の2</td>
+      </tr>
+      <tr>
+        <td><b>所得税の還付請求</b><br>税務署に申告する（このページの話）</td>
+        <td><b>脱退一時金の支払を受けた年の翌年1月1日から5年以内</b></td>
+        <td>所得税法 第173条<br>国税通則法 第74条</td>
+      </tr>
+    </table>
+    <div class="box key" style="margin-top:16px">
+      <b>すでに帰国してから何年も経っている方へ</b>
+      脱退一時金そのものを受け取り済みであれば、所得税の還付はそこから<b>5年間</b>請求できます。<span id="year-line">脱退一時金を受け取ったのが直近5年以内であれば、まだ間に合います。</span>「もう何年も前のことだから」とあきらめてしまっている方が少なくありません。
+    </div>
+    <p>なお、還付金を受ける権利は5年で時効により消滅します（国税通則法第74条）。期限を過ぎると、手続き自体ができなくなります。</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="sec" id="s8">
+    <h2><span class="no">8</span>計算例</h2>
+    <p>被保険者期間36か月、平均標準報酬額25万円の方が、支給率3.3で脱退一時金825,000円を受け取ったケースです。</p>
+    <div class="calcbox">
+      <div class="ttl">① 源泉徴収された税額（控除が一切ない状態）</div>
+      <div class="r"><span>脱退一時金の支給額</span><span>825,000円</span></div>
+      <div class="r sub"><span>× 20.42%</span><span></span></div>
+      <div class="r"><span>源泉徴収された所得税額</span><span>168,465円</span></div>
+    </div>
+    <div class="calcbox">
+      <div class="ttl">② 退職所得の選択課税で計算し直した税額</div>
+      <div class="r"><span>収入金額</span><span>825,000円</span></div>
+      <div class="r"><span>退職所得控除額（40万円 × 3年）</span><span>− 1,200,000円</span></div>
+      <div class="r sub"><span>控除額が収入金額を上回るため</span><span></span></div>
+      <div class="r"><span>退職所得の金額</span><span>0円</span></div>
+      <div class="r"><span>納めるべき所得税額</span><span>0円</span></div>
+    </div>
+    <div class="calcbox">
+      <div class="ttl">③ 還付される金額</div>
+      <div class="r"><span>源泉徴収された税額 ①</span><span>168,465円</span></div>
+      <div class="r"><span>納めるべき税額 ②</span><span>− 0円</span></div>
+      <div class="r total"><span>還付額</span><span>168,465円（全額）</span></div>
+    </div>
+    <p>被保険者期間が36か月なので、勤続年数は3年として計算します。退職所得控除額は 40万円 × 3年 ＝ 120万円となり、支給額825,000円を上回ります。その結果、課税対象となる退職所得がゼロとなり、源泉徴収された税額の全額が還付されます。</p>
+    <p><a href="../#calc" id="to-calc">ご自身の金額で試算する →</a></p>
+  </section>
+
+  <!-- 9 -->
+  <section class="sec" id="s9">
+    <h2><span class="no">9</span>根拠条文の一覧</h2>
+    <table class="laws">
+      <tr><th>内容</th><th>根拠条文</th></tr>
+      <tr><td>脱退一時金が「退職手当等」とみなされること</td><td>所得税法 第31条第1号<br>所得税法施行令 第72条</td></tr>
+      <tr><td>非居住者の国内源泉所得にあたること</td><td>所得税法 第161条第1項第12号ハ</td></tr>
+      <tr><td>分離課税・税率20%</td><td>所得税法 第169条・第170条</td></tr>
+      <tr><td>復興特別所得税 2.1%（合計20.42%）</td><td>復興財源確保法 第28条</td></tr>
+      <tr><td>源泉徴収義務</td><td>所得税法 第212条第1項<br>所得税法 第213条第1項</td></tr>
+      <tr><td>退職所得の選択課税</td><td>所得税法 第171条</td></tr>
+      <tr><td>選択課税による還付の申告</td><td>所得税法 第173条</td></tr>
+      <tr><td>退職所得の金額・退職所得控除額</td><td>所得税法 第30条</td></tr>
+      <tr><td>短期退職手当等（勤続5年以下）</td><td>所得税法 第30条第4項</td></tr>
+      <tr><td>勤続年数の計算</td><td>所得税法施行令 第69条</td></tr>
+      <tr><td>超過累進税率</td><td>所得税法 第89条</td></tr>
+      <tr><td>納税管理人</td><td>国税通則法 第117条</td></tr>
+      <tr><td>還付金等の消滅時効（5年）</td><td>国税通則法 第74条</td></tr>
+      <tr><td>脱退一時金の支給・請求期限（2年）</td><td>厚生年金保険法 附則第29条<br>国民年金法 附則第9条の3の2</td></tr>
+      <tr><td>税理士の守秘義務</td><td>税理士法 第38条</td></tr>
+    </table>
+  </section>
+
+  <!-- 10 -->
+  <section class="sec" id="s10">
+    <h2><span class="no">10</span>当事務所について</h2>
+    <p>このページは、日本の国家資格である<b>税理士</b>が作成しています。税理士は、税務代理・税務書類の作成・税務相談を業として行うことができる唯一の資格です（税理士法第2条）。</p>
+    <div class="trust">
+      <dl>
+        <dt>事務所名</dt><dd id="t-office">—</dd>
+        <dt>代表者</dt><dd id="t-rep">—</dd>
+        <dt>登録</dt><dd id="t-reg">—</dd>
+        <dt>所在地</dt><dd id="t-addr">—</dd>
+        <dt>連絡先</dt><dd><a id="t-mail" href="#">—</a></dd>
+      </dl>
+    </div>
+    <h3>ご確認いただけること</h3>
+    <ul>
+      <li><b>税理士登録の有無を、ご自身で確認できます。</b>日本税理士会連合会の<a href="https://www.zeirishikensaku.jp/" target="_blank" rel="noopener">税理士情報検索サイト</a>で、登録番号<b id="t-regno">—</b>を照会してください。</li>
+      <li><b>守秘義務があります。</b>税理士および税理士であった者は、業務上知り得た秘密を他に漏らしてはならないと定められています（税理士法第38条）。違反には罰則があります。</li>
+      <li><b>前払いをいただきません。</b>お客様から当事務所へ送金していただくことはありません。還付金は税務署から当事務所の口座に入金され、そこから報酬を差し引いて残額を送金します。</li>
+      <li><b>書類の控えをお渡しします。</b>税務署に提出した申告書の控えと、送金明細をお送りします。ご自身で内容を確認いただけます。</li>
+    </ul>
+  </section>
+
+  <div class="cta">
+    <h2>まずは還付の見込み額を確認してください</h2>
+    <p>通知書の3つの数字を入れるだけです。入力内容が送信されることはありません。</p>
+    <a class="btn" href="../#calc" id="cta-calc">還付の見込み額を調べる</a>
+    <span class="alt">そのままお申し込みもできます　<a href="#" id="cta-form">お申し込みはこちら</a></span>
+  </div>
+
+  <p class="disclaimer">
+    本ページは、脱退一時金に係る所得税の還付についての一般的な解説であり、個別の事案に対する税務相談または助言ではありません。
+    記載内容は<span id="d-asof">—</span>現在の法令にもとづいています。法令の改正、および個々の事実関係により取扱いが異なる場合があります。
+    実際のお手続きにあたっては、当事務所にお問い合わせいただくか、所轄の税務署にご確認ください。
+    本ページの引用条文は、読みやすさのため一部を省略しています。正確な条文は<a href="https://laws.e-gov.go.jp/" target="_blank" rel="noopener">e-Gov法令検索</a>をご参照ください。
+  </p>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <dl>
+      <dt>事務所</dt><dd id="f-office">—</dd>
+      <dt>代表者</dt><dd id="f-rep">—</dd>
+      <dt>登録</dt><dd id="f-reg">—</dd>
+      <dt>所在地</dt><dd id="f-addr">—</dd>
+      <dt>メール</dt><dd><a id="f-mail" href="#">—</a></dd>
+    </dl>
+    <p class="c"><a href="../" id="f-back">脱退一時金の所得税還付について（トップへ）</a>　<span id="f-copy"></span></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  function setText(id, v) { var el = $(id); if (el) el.textContent = v; }
+
+  /* --- CONFIG を流し込む --- */
+  ['by-rep', 't-rep', 'f-rep'].forEach(function (id) { setText(id, LP.OFFICE_REP); });
+  ['by-reg', 't-reg', 'f-reg'].forEach(function (id) { setText(id, LP.OFFICE_REG); });
+  ['t-office', 'f-office'].forEach(function (id) { setText(id, LP.OFFICE_NAME); });
+  ['t-addr', 'f-addr'].forEach(function (id) { setText(id, LP.OFFICE_ADDR); });
+  ['by-asof', 'd-asof'].forEach(function (id) { setText(id, LP.LAW_ASOF); });
+  setText('t-regno', LP.REG_NO);
+  setText('f-copy', '© ' + new Date().getFullYear() + ' ' + LP.OFFICE_NAME);
+  ['t-mail', 'f-mail'].forEach(function (id) {
+    var a = $(id); if (!a) return;
+    a.href = 'mailto:' + LP.CONTACT; a.textContent = LP.CONTACT;
+  });
+
+  /* --- 「直近5年」を西暦で具体的に出す（年が変わっても自動で正しくなる） --- */
+  // 還付請求は「支払を受けた年の翌年1月1日から5年」。したがって、いま請求できる
+  // いちばん古い支給年は（今年 − 5）年。
+  var earliest = new Date().getFullYear() - 5;
+  setText('year-line', earliest + '年以降に脱退一時金を受け取った方は、まだ間に合います。');
+
+  /* --- ?ref= を、トップへ戻るリンクと申込リンクに引き継ぐ --- */
+  var ref = LP.REF;
+  try {
+    var q = new URLSearchParams(window.location.search).get('ref');
+    if (q && /^[A-Za-z0-9_-]{1,32}$/.test(q)) ref = q;
+  } catch (e) { /* 古いブラウザ */ }
+  var qs = ref ? ('?ref=' + encodeURIComponent(ref)) : '';
+
+  ['back-lp', 'f-back'].forEach(function (id) { var a = $(id); if (a) a.href = LP.LP_URL + qs; });
+  ['to-calc', 'cta-calc'].forEach(function (id) { var a = $(id); if (a) a.href = LP.LP_URL + qs + '#calc'; });
+
+  var form = LP.FORM_URL + (LP.FORM_URL.indexOf('?') >= 0 ? '&' : '?') + 'lang=' + encodeURIComponent(LP.LANG);
+  if (ref) form += '&ref=' + encodeURIComponent(ref);
+  var cf = $('cta-form');
+  if (cf) {
+    cf.href = form;
+    cf.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') window.gtag('event', 'cta_click', { cta_location: 'why_page' });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

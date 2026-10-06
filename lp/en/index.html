@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Japan Pension Tax Refund — Get back the 20.42% withheld | EAST TAX</title>
+<meta name="description" content="About 20.42% income tax was withheld from your Japan Lump-sum Withdrawal Payment (脱退一時金). A licensed Japanese tax accountant can claim it back. No upfront fee — our fee comes out of your refund.">
+<!-- ★公開準備中。検索結果に出さないための指定。
+     内容が確定して本番公開するときに、この meta 行を削除すること。 -->
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="Get back the 20.42% tax withheld from your Japan pension refund">
+<meta property="og:description" content="Estimate your refund in 30 seconds. No upfront fee — we are paid only from your refund.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%92%B4</text></svg>">
+
+<!--
+  ============================================================================
+  CONFIG — 広告を回す前にここだけ直せば動きます（他は触らなくてOK）
+  ============================================================================
+  1. GA_ID / ADS_ID / ADS_CONV_CTA : Google アナリティクス・Google 広告のID
+     ※ 空のままだと計測タグは一切読み込まれません（Google広告の最適化が効きません）
+  2. OFFICE_* : 事務所情報。★印は必ず現物と突き合わせてください
+  3. REF : 既定の紹介元コード。URL に ?ref=xxx を付ければそちらが優先されます
+  ============================================================================
+-->
+<script>
+var LP = {
+  FORM_URL:     'https://form.east-tax.com/',
+  REF:          'gads_en',          // 既定の紹介元コード（?ref= で上書き可）
+  LANG:         'en',
+
+  FEE_SERVICE:  25000,              // 申告代行報酬（完全成功報酬）
+  FEE_TRANSFER: 1000,               // 送金手数料
+  FEE_REISSUE:  2000,               // 通知書（ハガキ）再発行代行
+
+  GA_ID:        '',                 // 例 'G-XXXXXXXXXX'
+  ADS_ID:       '',                 // 例 'AW-123456789'
+  ADS_CONV_CTA: '',                 // 例 'AW-123456789/AbCdEfGhIj'
+
+  CONTACT:      'info@east-tax.com',
+  OFFICE_NAME:  'EAST TAX Accounting Office',
+  OFFICE_NAME_JA: 'EAST TAX会計事務所',
+  OFFICE_REP:   '許 仁成',           // ★ 英字表記を入れる場合はここに併記
+  OFFICE_ADDR:  'Shinkawa Tadokoro Bldg. 3F, 2-3-4 Shinkawa, Chuo-ku, Tokyo 104-0033, Japan',
+  OFFICE_ADDR_JA: '〒104-0033 東京都中央区新川2-3-4 新川田所ビル3階',
+  OFFICE_REG:   'Tokyo Certified Public Tax Accountants’ Association, Kyobashi Branch — Registration No. 120089', // ★要確認
+  PARTNER_SR:   'East Labor (Labor and Social Security Attorney Office)'
+};
+</script>
+
+<style>
+:root{
+  --c-bg:#f3f5f8; --c-surface:#ffffff; --c-text:#1b2430; --c-muted:#4a5565;
+  --c-border:#d3d9e2; --c-input-border:#7b8794;
+  --c-primary:#1d4e89; --c-primary-dark:#153a67; --c-primary-soft:#e9f0f9;
+  --c-accent:#c2410c; --c-accent-soft:#fff7ed;
+  --c-success:#146c43; --c-success-soft:#eaf6ef;
+  --c-warn:#7a4b00; --c-warn-soft:#fff7e0;
+  --radius:12px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+  --font-ja:"Hiragino Sans","Yu Gothic UI",Meiryo,"Noto Sans CJK JP","Noto Sans JP",sans-serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-family:var(--font);-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--c-bg);color:var(--c-text);line-height:1.65;overflow-wrap:anywhere}
+.ja{font-family:var(--font-ja)}
+:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{line-height:1.25;margin:0}
+p{margin:0}
+.wrap{width:100%;max-width:920px;margin:0 auto;padding:0 16px}
+
+/* ---------- header ---------- */
+.site{background:var(--c-surface);border-bottom:1px solid var(--c-border)}
+.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px}
+.brand{font-weight:700;font-size:15px;color:var(--c-primary);letter-spacing:.01em}
+.brand small{display:block;font-weight:500;font-size:11.5px;color:var(--c-muted);letter-spacing:0}
+.langs{display:flex;gap:4px;font-size:12.5px;flex:none}
+.langs a,.langs span{padding:5px 10px;border-radius:7px;text-decoration:none;color:var(--c-muted);white-space:nowrap}
+.langs .on{background:var(--c-primary-soft);color:var(--c-primary);font-weight:700}
+.langs a:hover{background:#f0f2f6}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(180deg,#ffffff 0%,#eef3f9 100%);border-bottom:1px solid var(--c-border);padding:34px 0 30px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--c-primary);background:var(--c-primary-soft);border-radius:999px;padding:5px 12px;margin-bottom:14px}
+h1{font-size:30px;font-weight:800;letter-spacing:-.01em}
+h1 .hl{color:var(--c-accent)}
+.lede{margin-top:14px;font-size:16.5px;color:var(--c-muted);max-width:40em}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{display:inline-flex;align-items:center;gap:7px;background:var(--c-success-soft);color:var(--c-success);
+  border:1px solid #bfe3cd;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:700}
+.pill svg{flex:none}
+
+/* ---------- sections ---------- */
+section{padding:40px 0}
+section.alt{background:var(--c-surface);border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border)}
+h2{font-size:23px;font-weight:800;letter-spacing:-.01em}
+h2 + .sub{margin-top:8px;color:var(--c-muted);font-size:15.5px}
+
+/* ---------- calculator ---------- */
+.calc{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);
+  box-shadow:0 1px 3px rgba(27,36,48,.06);overflow:hidden;margin-top:20px}
+.calc-head{background:var(--c-primary);color:#fff;padding:16px 20px}
+.calc-head h3{font-size:18px;font-weight:700}
+.calc-head p{font-size:13.5px;opacity:.9;margin-top:3px}
+.calc-body{padding:20px}
+.field{margin-bottom:18px}
+.field label{display:flex;align-items:flex-start;gap:9px;font-weight:700;font-size:15px;margin-bottom:7px}
+.n{flex:none;width:23px;height:23px;border-radius:50%;background:var(--c-accent);color:#fff;
+  font-size:13.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.field .ja-sub{display:block;font-weight:500;font-size:13px;color:var(--c-muted);margin-top:1px}
+.inp{display:flex;align-items:stretch;border:1.5px solid var(--c-input-border);border-radius:9px;
+  background:#fff;overflow:hidden;transition:border-color .12s}
+.inp:focus-within{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.inp .pre,.inp .suf{display:flex;align-items:center;padding:0 13px;background:#f6f8fa;color:var(--c-muted);
+  font-size:15px;font-weight:600;flex:none}
+.inp .pre{border-right:1px solid var(--c-border)}
+.inp .suf{border-left:1px solid var(--c-border)}
+.inp input{flex:1;min-width:0;border:0;outline:0;padding:14px 13px;font:inherit;font-size:18px;
+  font-weight:600;text-align:right;background:transparent;color:var(--c-text)}
+.hint{font-size:12.5px;color:var(--c-muted);margin-top:6px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--c-text);
+  background:#f6f8fa;border:1px solid var(--c-border);border-radius:9px;padding:12px 14px;cursor:pointer}
+.chk input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--c-primary)}
+#other-wrap{margin-top:14px;padding-top:4px;border-top:1px dashed var(--c-border)}
+#other-wrap[hidden]{display:none}
+
+/* ---------- result ---------- */
+.result{margin-top:6px;border-top:1px solid var(--c-border);padding:20px;background:#fbfcfd}
+.result[hidden]{display:none}
+.r-label{font-size:13.5px;color:var(--c-muted);font-weight:600}
+.r-big{font-size:38px;font-weight:800;letter-spacing:-.02em;color:var(--c-accent);line-height:1.1;margin-top:2px}
+.rows{margin-top:16px;border:1px solid var(--c-border);border-radius:10px;background:#fff;overflow:hidden}
+.row{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;font-size:14.5px;border-bottom:1px solid #eef1f5}
+.row span:last-child{font-weight:700;white-space:nowrap}
+.row.minus span:last-child{color:var(--c-muted)}
+.row.net{border-bottom:0;background:var(--c-success-soft);padding:15px 14px}
+.row.net span{font-size:16px;font-weight:800;color:var(--c-success)}
+.row.net span:last-child{font-size:21px}
+.r-note{margin-top:13px;font-size:12.5px;color:var(--c-muted)}
+.r-warn{margin-top:14px;background:var(--c-warn-soft);border:1px solid #e8d49a;color:var(--c-warn);
+  border-radius:9px;padding:12px 14px;font-size:13.5px}
+.r-warn[hidden]{display:none}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  background:var(--c-primary);color:#fff;border:0;border-radius:10px;padding:16px 22px;
+  font:inherit;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;
+  box-shadow:0 1px 2px rgba(21,58,103,.3);transition:background .12s}
+.btn:hover{background:var(--c-primary-dark);color:#fff}
+.btn-sub{display:block;text-align:center;font-size:12.5px;color:var(--c-muted);margin-top:9px}
+
+/* ---------- generic cards ---------- */
+.cards{display:grid;gap:14px;margin-top:20px}
+@media(min-width:720px){.cards.c3{grid-template-columns:repeat(3,1fr)}.cards.c2{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);padding:18px 18px 19px}
+.card h3{font-size:16.5px;font-weight:700;margin-bottom:7px}
+.card p{font-size:14.5px;color:var(--c-muted)}
+.step{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--c-border)}
+.step:last-child{border-bottom:0}
+.step .sn{flex:none;width:30px;height:30px;border-radius:50%;background:var(--c-primary-soft);
+  color:var(--c-primary);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:16px;font-weight:700}
+.step p{font-size:14.5px;color:var(--c-muted);margin-top:3px}
+
+/* ---------- pricing ---------- */
+.price{margin-top:20px;background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);overflow:hidden}
+.price .prow{display:flex;justify-content:space-between;gap:14px;padding:15px 18px;border-bottom:1px solid #eef1f5;font-size:15px}
+.price .prow:last-child{border-bottom:0}
+.price .prow b{white-space:nowrap}
+.price .prow small{display:block;color:var(--c-muted);font-size:12.5px;font-weight:400}
+.price-note{margin-top:14px;background:var(--c-success-soft);border:1px solid #bfe3cd;border-radius:10px;
+  padding:14px 16px;font-size:14.5px;color:#0f5132}
+.price-note b{color:var(--c-success)}
+
+/* ---------- faq ---------- */
+details{background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;margin-top:10px}
+details[open]{border-color:#b9c6d8}
+summary{cursor:pointer;padding:15px 17px;font-weight:700;font-size:15.5px;list-style:none;display:flex;
+  justify-content:space-between;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:21px;font-weight:400;color:var(--c-muted);flex:none;line-height:1}
+details[open] summary::after{content:"\2212"}
+details .ans{padding:0 17px 16px;font-size:14.5px;color:var(--c-muted)}
+
+/* ---------- figure ---------- */
+figure{margin:20px 0 0;background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius);
+  padding:12px;overflow:hidden}
+figure img{border-radius:6px}
+figcaption{font-size:12.5px;color:var(--c-muted);margin-top:10px;padding:0 4px 2px}
+
+/* ---------- footer ---------- */
+footer{background:#111a26;color:#c6ced9;padding:34px 0 110px;font-size:13.5px}
+footer h3{color:#fff;font-size:15px;margin-bottom:10px}
+footer .fgrid{display:grid;gap:22px}
+@media(min-width:720px){footer .fgrid{grid-template-columns:1.3fr 1fr}}
+footer dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px}
+footer dt{color:#8e9bab;white-space:nowrap}
+footer dd{margin:0}
+footer a{color:#9ec3f0}
+.legal{margin-top:24px;padding-top:18px;border-top:1px solid #26313f;font-size:12px;color:#8e9bab}
+
+/* ---------- sticky cta ---------- */
+.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);
+  border-top:1px solid var(--c-border);padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  box-shadow:0 -2px 10px rgba(27,36,48,.08);z-index:50;
+  backdrop-filter:saturate(180%) blur(6px)}
+.sticky .wrap{display:flex;align-items:center;gap:12px;padding:0}
+.sticky .s-txt{flex:1;min-width:0;font-size:13px;color:var(--c-muted);line-height:1.35}
+.sticky .s-txt b{display:block;color:var(--c-text);font-size:14.5px}
+.sticky .btn{width:auto;flex:none;padding:13px 20px;font-size:15.5px}
+@media(max-width:519px){.sticky .s-txt{display:none}.sticky .btn{width:100%}}
+
+@media(min-width:720px){
+  h1{font-size:38px}
+  .lede{font-size:17.5px}
+  section{padding:52px 0}
+  h2{font-size:27px}
+  .calc-body{padding:26px}
+  .result{padding:26px}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">EAST TAX<small>Certified Tax Accountant · Tokyo, Japan</small></div>
+    <nav class="langs" aria-label="Language">
+      <span class="on">English</span>
+      <a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Japan pension · income tax refund</span>
+    <h1>You already paid <span class="hl">20.42%</span> tax on your Japan pension refund.<br>Most of our clients get <span class="hl">all of it back</span>.</h1>
+    <p class="lede">
+      When your Lump-sum Withdrawal Payment <span class="ja">(脱退一時金)</span> was paid, Japanese law required a flat
+      20.42% to be withheld as income tax. You can claim it back by filing a tax return in Japan — and a licensed
+      Japanese tax accountant <span class="ja">(税理士)</span> can do the whole thing for you.
+    </p>
+    <div class="pills">
+      <span class="pill"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.6 14.2 3.8 10.4l1.4-1.4 2.4 2.4 6.8-6.8 1.4 1.4z"/></svg>No upfront fee</span>
+      <span class="pill"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.6 14.2 3.8 10.4l1.4-1.4 2.4 2.4 6.8-6.8 1.4 1.4z"/></svg>Paid only from your refund</span>
+      <span class="pill"><svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7.6 14.2 3.8 10.4l1.4-1.4 2.4 2.4 6.8-6.8 1.4 1.4z"/></svg>No refund, no fee</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ CALCULATOR ============================ -->
+<section id="calc">
+  <div class="wrap">
+    <h2>Estimate your refund in 30 seconds</h2>
+    <p class="sub">Take out your <span class="ja">脱退一時金支給決定通知書</span> (Notice of Lump-sum Withdrawal Payments) and copy three numbers.</p>
+
+    <div class="calc">
+      <div class="calc-head">
+        <h3>Refund estimator</h3>
+        <p>Nothing is sent to us. This runs entirely in your browser.</p>
+      </div>
+      <div class="calc-body">
+        <div class="field">
+          <label for="f-amount"><span class="n">1</span><span>Amount of payments<span class="ja-sub">支給金額 — Employees' Pension Insurance</span></span></label>
+          <div class="inp"><span class="pre">¥</span><input id="f-amount" type="text" inputmode="numeric" autocomplete="off" placeholder="825,000"></div>
+        </div>
+
+        <div class="field">
+          <label for="f-tax"><span class="n">2</span><span>Income tax withheld<span class="ja-sub">所得税額 — this is what we claim back</span></span></label>
+          <div class="inp"><span class="pre">¥</span><input id="f-tax" type="text" inputmode="numeric" autocomplete="off" placeholder="168,465"></div>
+          <p class="hint">Leave this blank and we will assume 20.42% of ①.</p>
+        </div>
+
+        <div class="field">
+          <label for="f-months"><span class="n">3</span><span>Covered months<span class="ja-sub">被保険者期間（実期間）</span></span></label>
+          <div class="inp"><input id="f-months" type="text" inputmode="numeric" autocomplete="off" placeholder="36"><span class="suf">months</span></div>
+        </div>
+
+        <label class="chk" for="f-other">
+          <input type="checkbox" id="f-other">
+          <span>I also received a <b>retirement allowance</b> <span class="ja">(退職金)</span> from my employer in the same year.</span>
+        </label>
+
+        <div id="other-wrap" hidden>
+          <div class="field" style="margin-top:16px">
+            <label for="f-other-amount"><span>Retirement allowance received<span class="ja-sub">退職金の支給額</span></span></label>
+            <div class="inp"><span class="pre">¥</span><input id="f-other-amount" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+          </div>
+          <div class="field" style="margin-bottom:4px">
+            <label for="f-other-tax"><span>Tax withheld from it<span class="ja-sub">そこから源泉徴収された所得税額</span></span></label>
+            <div class="inp"><span class="pre">¥</span><input id="f-other-tax" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result" id="result" hidden>
+        <p class="r-label">Estimated refund from the Japanese tax office</p>
+        <p class="r-big" id="r-refund">¥0</p>
+
+        <div class="rows">
+          <div class="row minus"><span>Our fee — tax filing (success fee)</span><span id="r-fee">−¥25,000</span></div>
+          <div class="row minus"><span>Bank transfer to your account</span><span id="r-transfer">−¥1,000</span></div>
+          <div class="row net"><span>You receive</span><span id="r-net">¥0</span></div>
+        </div>
+
+        <div class="r-warn" id="r-warn"></div>
+
+        <p class="r-note">
+          Estimate only, based on the figures you entered and calculated with the same formula we use for the actual
+          filing. The final amount is determined by the Japanese tax office.
+          <b>You pay nothing upfront</b> — all fees are deducted from the refund once it arrives.
+        </p>
+
+        <div style="margin-top:18px">
+          <a class="btn" href="#" id="cta-result" data-cta="result">Start my refund — it's free to begin</a>
+          <span class="btn-sub">Takes about 5 minutes · No payment details required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHERE TO FIND ============================ -->
+<section class="alt" id="where">
+  <div class="wrap">
+    <h2>Where to find these numbers</h2>
+    <p class="sub">All three are printed in the <b>Employees' Pension Insurance</b> table on the right-hand side of your notice.</p>
+    <figure>
+      <img src="../assets/notice-guide-en.png" width="1240" height="815" loading="lazy" decoding="async"
+           alt="Sample Notice of Lump-sum Withdrawal Payments showing where the Amount of payments, Income tax and Covered months are printed.">
+      <figcaption>Sample image — the figures shown are examples only.</figcaption>
+    </figure>
+    <div class="cards c2" style="margin-top:18px">
+      <div class="card">
+        <h3>Haven't received the notice yet?</h3>
+        <p>The notice is posted to you after the Japan Pension Service approves your Lump-sum Withdrawal Payment. Apply once it arrives — you have up to five years to claim the tax back.</p>
+      </div>
+      <div class="card">
+        <h3>Lost or threw away the notice?</h3>
+        <p>Our partner <span id="partner-1">labor and social security attorney</span> can request a re-issue from the Japan Pension Service on your behalf for <b id="fee-reissue-1">¥2,000</b>. Just tell us when you apply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY ============================ -->
+<section id="why">
+  <div class="wrap">
+    <h2>Why you get the money back</h2>
+    <div class="cards c3">
+      <div class="card">
+        <h3>1. You were taxed as a non-resident</h3>
+        <p>By the time the payment was made you had left Japan, so a flat 20.42% was withheld with no deductions applied at all.</p>
+      </div>
+      <div class="card">
+        <h3>2. The law lets you re-calculate it</h3>
+        <p>Japan's Income Tax Act lets non-residents elect to be taxed on this payment as <i>retirement income</i> <span class="ja">(退職所得の選択課税)</span> instead.</p>
+      </div>
+      <div class="card">
+        <h3>3. The deduction usually wipes out the tax</h3>
+        <p>That method first subtracts a retirement income deduction — ¥400,000 for every year you were covered, minimum ¥800,000. For most people it is larger than the payment itself, so the tax becomes zero and the whole 20.42% comes back.</p>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:18px">
+      The refund is yours by law — but it is <b>not automatic</b>. Someone has to file a Japanese tax return for you, and
+      because you are overseas, a tax agent in Japan <span class="ja">(納税管理人)</span> has to be appointed first.
+      That is exactly what we handle.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ HOW ============================ -->
+<section class="alt" id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="sub">Typically 2–3 months from the day your notice reaches us.</p>
+    <div class="cards" style="margin-top:12px">
+      <div class="card" style="padding:4px 18px">
+        <div class="step"><div class="sn">1</div><div>
+          <h3>Apply online — about 5 minutes</h3>
+          <p>Your name, contact details and the bank account where you want the refund sent. No payment details, no card.</p></div></div>
+        <div class="step"><div class="sn">2</div><div>
+          <h3>Post us your original notice</h3>
+          <p>We will email you the mailing address and a checklist in English. If you lost the notice, we can have it re-issued.</p></div></div>
+        <div class="step"><div class="sn">3</div><div>
+          <h3>We prepare and file your tax return</h3>
+          <p>A licensed Japanese tax accountant becomes your tax agent, prepares the elective-taxation return and files it with your tax office in Japan.</p></div></div>
+        <div class="step"><div class="sn">4</div><div>
+          <h3>Your refund is sent to your bank</h3>
+          <p>The tax office pays the refund to our client account. We transfer it to you, minus our fee, and email you the transfer receipt.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PRICING ============================ -->
+<section id="pricing">
+  <div class="wrap">
+    <h2>Pricing</h2>
+    <p class="sub">Everything is deducted from your refund. There is nothing to pay in advance, ever.</p>
+    <div class="price">
+      <div class="prow"><span>Tax refund filing <small>Complete success fee — charged only if a refund is obtained</small></span><b id="fee-service">¥25,000</b></div>
+      <div class="prow"><span>Bank transfer to your account <small>Actual remittance cost</small></span><b id="fee-transfer">¥1,000</b></div>
+      <div class="prow"><span>Notice re-issue <small>Optional — only if you lost your notice. Handled by our partner labor and social security attorney</small></span><b id="fee-reissue-2">¥2,000</b></div>
+    </div>
+    <p class="price-note">
+      <b>¥0 upfront.</b> You never send us money. We receive the refund from the tax office, subtract our fee, and send
+      you the rest with a copy of the transfer record. <b>If no refund is obtained, you owe us nothing.</b>
+    </p>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="alt" id="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+
+    <details><summary>Do I really pay nothing in advance?</summary><div class="ans">
+      Correct. We are paid out of the refund itself. If the tax office issues no refund, you pay nothing — you will not
+      receive an invoice.
+    </div></details>
+
+    <details><summary>Could I just do this myself?</summary><div class="ans">
+      Yes. You are free to file the return yourself, and it costs nothing to do so. What you would need to handle is the
+      Japanese-language return, appointing a tax agent in Japan, corresponding with the tax office, and receiving the
+      refund into a Japanese bank account. Our fee is for taking all of that off your hands.
+    </div></details>
+
+    <details><summary>How long does it take?</summary><div class="ans">
+      Usually 2–3 months from the day your original notice reaches our office. International post is often the slowest
+      part, so send it as soon as you can.
+    </div></details>
+
+    <details><summary>Do I need to be in Japan? Do I need a Japanese bank account?</summary><div class="ans">
+      No to both. We act as your tax agent <span class="ja">(納税管理人)</span> in Japan, which is what allows the return
+      to be filed and the refund to be issued while you are overseas. We then remit the money to your own account.
+    </div></details>
+
+    <details><summary>Am I guaranteed to get the full 20.42% back?</summary><div class="ans">
+      In most cases the retirement income deduction is larger than the payment, so the entire amount withheld is
+      refunded. It can be less if, for example, you also received a retirement allowance from your employer in the same
+      year, or your covered period was long with high remuneration. We check your actual figures before filing and tell
+      you plainly what to expect.
+    </div></details>
+
+    <details><summary>I lost my Notice of Lump-sum Withdrawal Payments.</summary><div class="ans">
+      That is a common situation. Our partner labor and social security attorney can request a re-issue from the Japan
+      Pension Service for <b id="fee-reissue-3">¥2,000</b>, also deducted from your refund. You will need your Basic
+      Pension Number or pension book if you still have it.
+    </div></details>
+
+    <details><summary>How long do I have to claim?</summary><div class="ans">
+      Up to five years from the year the Lump-sum Withdrawal Payment was made. After that the right to claim the refund
+      is lost.
+    </div></details>
+
+    <details><summary>Who exactly am I dealing with?</summary><div class="ans">
+      <span id="faq-office">EAST TAX Accounting Office</span>, a licensed tax accountant <span class="ja">(税理士)</span>
+      practice in Tokyo. Registration details and our office address are in the footer of this page.
+    </div></details>
+  </div>
+</section>
+
+<!-- ============================ FINAL CTA ============================ -->
+<section id="start">
+  <div class="wrap" style="max-width:620px;text-align:center">
+    <h2>Ready to claim it back?</h2>
+    <p class="sub" style="margin-bottom:22px">Start the application now — it takes about five minutes and costs nothing to begin.</p>
+    <a class="btn" href="#" id="cta-final" data-cta="final">Start my refund application</a>
+    <span class="btn-sub">No upfront fee · No card required · Available in 6 languages</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h3 id="f-office">EAST TAX Accounting Office</h3>
+        <dl>
+          <dt>Representative</dt><dd id="f-rep">—</dd>
+          <dt>Registration</dt><dd id="f-reg">—</dd>
+          <dt>Address</dt><dd id="f-addr">—</dd>
+          <dt>Email</dt><dd><a id="f-mail" href="#">—</a></dd>
+          <dt>Partner</dt><dd id="f-partner">—</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Fees</h3>
+        <dl>
+          <dt>Tax filing</dt><dd id="f-fee1">—</dd>
+          <dt>Transfer</dt><dd id="f-fee2">—</dd>
+          <dt>Notice re-issue</dt><dd id="f-fee3">—</dd>
+          <dt>Payment</dt><dd>Deducted from the refund. No advance payment.</dd>
+          <dt>Service period</dt><dd>Filed as soon as your original notice is received; refund typically 2–3 months.</dd>
+          <dt>Cancellation</dt><dd>You may withdraw at any time before the return is filed, free of charge.</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="legal">
+      The figures produced by the estimator on this page are estimates based on the information you enter and do not
+      constitute a guarantee of any refund amount. The final amount is determined by the Japanese tax authorities.
+      <span id="f-copy"></span>
+    </p>
+  </div>
+</footer>
+
+<div class="sticky">
+  <div class="wrap">
+    <div class="s-txt"><b>No upfront fee</b>Our fee comes out of your refund.</div>
+    <a class="btn" href="#" id="cta-sticky" data-cta="sticky">Start my refund</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------------- *
+   * 税額計算 — gas/Calc.gs の移植。式を変えるときは必ず両方を直すこと。
+   * ---------------------------------------------------------------- */
+  var WITHHOLDING_RATE = 2042;  // 20.42% を整数演算するための分子（/10000）
+
+  var INCOME_TAX_TABLE = [
+    [1949000, 0.05, 0],
+    [3299000, 0.10, 97500],
+    [6949000, 0.20, 427500],
+    [8999000, 0.23, 636000],
+    [17999000, 0.33, 1536000],
+    [39999000, 0.40, 2796000],
+    [Infinity, 0.45, 4796000]
+  ];
+
+  function serviceYearsFromMonths(months) {
+    return Math.max(1, Math.ceil((Number(months) || 0) / 12));
+  }
+
+  function retirementDeduction(years) {
+    if (years <= 20) return Math.max(400000 * years, 800000);
+    return 8000000 + 700000 * (years - 20);
+  }
+
+  function incomeTaxOn(taxable) {
+    for (var i = 0; i < INCOME_TAX_TABLE.length; i++) {
+      var limit = INCOME_TAX_TABLE[i][0], rate = INCOME_TAX_TABLE[i][1], ded = INCOME_TAX_TABLE[i][2];
+      if (taxable <= limit) return Math.max(0, Math.round(taxable * rate) - ded);
+    }
+    return 0;
+  }
+
+  function defaultWithholding(amount) {
+    return Math.floor((Number(amount) || 0) * WITHHOLDING_RATE / 10000);
+  }
+
+  function calcRetirementTax(input) {
+    var payments = (input.payments || []).filter(function (p) { return Number(p.amount) > 0; });
+    var years = Math.max(1, Math.floor(Number(input.serviceYears) || 1));
+    var revenue = 0, withheld = 0;
+    payments.forEach(function (p) {
+      revenue += Number(p.amount);
+      withheld += Number(p.withheld || 0);
+    });
+
+    var deduction = retirementDeduction(years);
+    var afterDeduction = Math.max(0, revenue - deduction);
+
+    var income;
+    if (years <= 5) {
+      // 短期退職手当等: 300万円を超える部分は 1/2 にしない
+      income = afterDeduction <= 3000000
+        ? Math.floor(afterDeduction / 2)
+        : 1500000 + (afterDeduction - 3000000);
+    } else {
+      income = Math.floor(afterDeduction / 2);
+    }
+
+    var taxable = Math.floor(income / 1000) * 1000;
+    var incomeTax = incomeTaxOn(taxable);
+    var reconstructionTax = Math.floor(incomeTax * 21 / 1000);
+    var balance = (incomeTax + reconstructionTax) - withheld;
+
+    return {
+      revenue: revenue,
+      withheld: withheld,
+      totalTax: incomeTax + reconstructionTax,
+      refund: balance < 0 ? -balance : 0,
+      payable: balance > 0 ? Math.floor(balance / 100) * 100 : 0
+    };
+  }
+
+  /* ---------------------------------------------------------------- *
+   * 画面
+   * ---------------------------------------------------------------- */
+  var $ = function (id) { return document.getElementById(id); };
+  var yen = function (n) { return '¥' + Math.round(n).toLocaleString('en-US'); };
+  var digits = function (s) { return String(s || '').replace(/[^0-9]/g, ''); };
+
+  function setText(id, v) { var el = $(id); if (el) el.textContent = v; }
+
+  /* --- CONFIG を画面に流し込む（1か所直せば全部変わるように） --- */
+  setText('fee-service', yen(LP.FEE_SERVICE));
+  setText('fee-transfer', yen(LP.FEE_TRANSFER));
+  ['fee-reissue-1', 'fee-reissue-2', 'fee-reissue-3'].forEach(function (id) { setText(id, yen(LP.FEE_REISSUE)); });
+  setText('r-fee', '−' + yen(LP.FEE_SERVICE));
+  setText('r-transfer', '−' + yen(LP.FEE_TRANSFER));
+  setText('f-office', LP.OFFICE_NAME);
+  setText('faq-office', LP.OFFICE_NAME);
+  setText('f-rep', LP.OFFICE_REP);
+  setText('f-reg', LP.OFFICE_REG);
+  setText('f-addr', LP.OFFICE_ADDR);
+  setText('f-partner', LP.PARTNER_SR);
+  setText('partner-1', LP.PARTNER_SR);
+  setText('f-fee1', yen(LP.FEE_SERVICE) + ' (success fee)');
+  setText('f-fee2', yen(LP.FEE_TRANSFER));
+  setText('f-fee3', yen(LP.FEE_REISSUE));
+  setText('f-copy', '© ' + new Date().getFullYear() + ' ' + LP.OFFICE_NAME + '.');
+  var mail = $('f-mail');
+  if (mail) { mail.href = 'mailto:' + LP.CONTACT; mail.textContent = LP.CONTACT; }
+
+  /* --- 申込フォームのURL（?ref= は LP の URL から引き継ぐ） --- */
+  function applyUrl() {
+    var ref = LP.REF;
+    try {
+      var q = new URLSearchParams(window.location.search).get('ref');
+      if (q && /^[A-Za-z0-9_-]{1,32}$/.test(q)) ref = q;
+    } catch (e) { /* 古いブラウザ */ }
+    var u = LP.FORM_URL + (LP.FORM_URL.indexOf('?') >= 0 ? '&' : '?')
+          + 'lang=' + encodeURIComponent(LP.LANG);
+    if (ref) u += '&ref=' + encodeURIComponent(ref);
+    return u;
+  }
+
+  /* --- 計測 --- */
+  function track(name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  }
+
+  /* --- 入力欄: 数字だけ受け付けてカンマ区切りで表示する --- */
+  var fields = ['f-amount', 'f-tax', 'f-months', 'f-other-amount', 'f-other-tax'];
+  function rawValue(id) { return Number(digits($(id).value)) || 0; }
+
+  fields.forEach(function (id) {
+    var el = $(id);
+    el.addEventListener('input', function () {
+      var d = digits(el.value);
+      // 月数はカンマを付けない
+      el.value = d === '' ? '' : (id === 'f-months' ? d : Number(d).toLocaleString('en-US'));
+      render();
+    });
+  });
+
+  $('f-other').addEventListener('change', function () {
+    $('other-wrap').hidden = !this.checked;
+    render();
+  });
+
+  var counted = false;   // calc_complete は1回だけ送る
+
+  function render() {
+    var amount = rawValue('f-amount');
+    var months = rawValue('f-months');
+    var tax = rawValue('f-tax') || defaultWithholding(amount);
+    var hasOther = $('f-other').checked;
+
+    // ① と ③ が埋まるまでは結果を出さない
+    if (!(amount > 0 && months > 0)) { $('result').hidden = true; return; }
+
+    var payments = [{ amount: amount, withheld: tax }];
+    if (hasOther && rawValue('f-other-amount') > 0) {
+      payments.push({ amount: rawValue('f-other-amount'), withheld: rawValue('f-other-tax') });
+    }
+
+    var r = calcRetirementTax({
+      payments: payments,
+      serviceYears: serviceYearsFromMonths(months)
+    });
+
+    var fees = LP.FEE_SERVICE + LP.FEE_TRANSFER;
+    var net = r.refund - fees;
+    var warn = $('r-warn');
+
+    setText('r-refund', yen(r.refund));
+    setText('r-net', net > 0 ? yen(net) : yen(0));
+
+    if (r.refund <= 0) {
+      warn.hidden = false;
+      warn.innerHTML = 'Based on these figures no tax would be refunded. Double-check the amounts on your notice, '
+        + 'or <a href="mailto:' + LP.CONTACT + '">email us</a> and we will check it for you at no cost.';
+    } else if (net <= 0) {
+      warn.hidden = false;
+      warn.innerHTML = '<b>Please contact us before applying.</b> Your estimated refund is smaller than our fees, so '
+        + 'filing may not be worth it. We will tell you honestly either way — '
+        + '<a href="mailto:' + LP.CONTACT + '">' + LP.CONTACT + '</a>.';
+    } else if (hasOther) {
+      warn.hidden = false;
+      warn.innerHTML = 'Because you also received a retirement allowance, your actual deduction may be calculated on a '
+        + 'longer period of service than your pension months. Treat this figure as a rough guide — we will confirm '
+        + 'the exact amount before filing.';
+    } else {
+      warn.hidden = true;
+    }
+
+    $('result').hidden = false;
+
+    if (!counted && r.refund > 0) {
+      counted = true;
+      track('calc_complete', { value: r.refund, currency: 'JPY' });
+    }
+  }
+
+  /* --- CTA --- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
+    a.href = applyUrl();
+    a.addEventListener('click', function () {
+      track('cta_click', { cta_location: a.getAttribute('data-cta') });
+      if (LP.ADS_CONV_CTA) track('conversion', { send_to: LP.ADS_CONV_CTA });
+    });
+  });
+
+  /* --- 言語リンクにも ?ref= を引き継ぐ --- */
+  try {
+    var ref = new URLSearchParams(window.location.search).get('ref');
+    if (ref && /^[A-Za-z0-9_-]{1,32}$/.test(ref)) {
+      Array.prototype.forEach.call(document.querySelectorAll('.langs a'), function (a) {
+        a.href = a.getAttribute('href') + '?ref=' + encodeURIComponent(ref);
+      });
+    }
+  } catch (e) { /* 古いブラウザ */ }
+
+  render();
+})();
+</script>
+
+<!-- Google tag — LP.GA_ID / LP.ADS_ID が設定されたときだけ読み込む -->
+<script>
+(function () {
+  var ids = [LP.GA_ID, LP.ADS_ID].filter(Boolean);
+  if (!ids.length) return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+
+  // 同意モード v2。EEA・英国・スイスは既定で拒否（これらの地域に広告を出すときは
+  // 別途 Google 認定の同意管理プラットフォーム（CMP）の導入が必要）。
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied',
+    region: ['GB','CH','NO','IS','LI','AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE',
+             'IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE']
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ids[0]);
+  document.head.appendChild(s);
+
+  gtag('js', new Date());
+  ids.forEach(function (id) { gtag('config', id); });
+})();
+</script>
+
+</body>
+</html>
