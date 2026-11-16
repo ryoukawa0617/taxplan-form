@@ -859,6 +859,7 @@
   /* ------------------------------------------------------------------ */
   function showDone(id, hasNotice) {
     state.done = { id: id, hasNotice: hasNotice };
+    if (!DEMO && window.trackApplication) window.trackApplication(id, state.ref); // 申込み完了の計測（track.js）
     state.errors = {};
     state.alert = null;
     setSending(false);
