@@ -10,6 +10,6 @@ window.APP_CONFIG = {
   // 申込みの計測（track.js）。空なら計測タグを読み込まない。
   // LP（lp/ja・lp/en の LP = {...}）の GA_ID / ADS_ID と同じ値を入れること。
   GA_ID: '',            // 例 'G-XXXXXXXXXX'
-  ADS_ID: '',           // 例 'AW-123456789'
+  ADS_ID: 'AW-18578080639', // Google広告のタグID（2026-11-16 設定）
   ADS_CONV_SUBMIT: ''   // 「申込み完了」コンバージョン。例 'AW-123456789/AbCdEfGhIj'
 };
