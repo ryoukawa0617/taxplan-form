@@ -11,5 +11,5 @@ window.APP_CONFIG = {
   // LP（lp/ja・lp/en の LP = {...}）の GA_ID / ADS_ID と同じ値を入れること。
   GA_ID: '',            // 例 'G-XXXXXXXXXX'
   ADS_ID: 'AW-18578080639', // Google広告のタグID（2026-11-16 設定）
-  ADS_CONV_SUBMIT: ''   // 「申込み完了」コンバージョン。例 'AW-123456789/AbCdEfGhIj'
+  ADS_CONV_SUBMIT: 'AW-18578080639/PG5xCPOZp7kdEP-G3JpF'   // 「申し込み完了」コンバージョン（2026-11-16 設定）
 };
